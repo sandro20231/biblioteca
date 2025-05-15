@@ -12,12 +12,43 @@
 <body>
     <div class="pai">
         <div class="filho1">
-
+            Biblioteca
         </div>
         <div class="filho2">
             <div class="neto1">
+                <div class="busca1">
+                    <form>
+                        {% csrf_token %}
+                        <Label>Pesquisa por livro:</Label></br>
+                        <input type="text" name="plivro"></br>
+                        <button type="submit" class="botao1">Buscar</button>
+                    </form>
+                    <hr>
+                </div>
+                <div class="busca2">
+                    <form>
+                        {% csrf_token %}
+                        <label>Busca por Autor:</label><br />
+                        <input type="text" name="pautor"><br />
+                        <button type="submit" class="botao2">Buscar</button>
 
+                    </form>
+                </div>
+                <hr>
+                <h2>Opções</h2>
+
+                <a href="#">Listar livros</a><br>
+                <a href="#">Novo livro</a><br>
+                <a href="#">excluir livro</a><br>
+                <a href="#">Alterar Livro</a><br>
+
+                <a href="#">Listar autores</a><br>
+                <a href="#">Novo autor</a><br>
+                <a href="#">Excluir autor</a><br>
+                <a href="#">alterar autor</a><br>
+                <hr>
             </div>
+
             <div class="neto2">
                 {% block body %}{% endblock %}
             </div>
