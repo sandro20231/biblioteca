@@ -1,0 +1,33 @@
+.pai {
+    display: flex;
+    flex-direction: column;
+}
+
+.filho1 {
+
+    background-color: blue;
+    color: white;
+    width: 100%;
+    height: 50px;
+}
+
+.filho2 {
+
+    background-color: white;
+    width: 100%;
+    height: 900px;
+    display: flex;
+    flex-direction: row;
+}
+
+.neto1 {
+
+    width: 30%;
+    height: 900px;
+    background-color: gray;
+}
+
+.neto2 {
+    width: 70%;
+    border: 1px solid black;
+}
