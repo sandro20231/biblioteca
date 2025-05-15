@@ -23,8 +23,9 @@
                         <input type="text" name="plivro"></br>
                         <button type="submit" class="botao1">Buscar</button>
                     </form>
-                    <hr>
+
                 </div>
+                <hr>
                 <div class="busca2">
                     <form>
                         {% csrf_token %}
@@ -46,6 +47,9 @@
                 <a href="#">Novo autor</a><br>
                 <a href="#">Excluir autor</a><br>
                 <a href="#">alterar autor</a><br>
+                <hr>
+                <a href="{%url 'login' %}">Login</a><br>
+                <a href="{% url 'logout' %}" method="post">Logout</a>
                 <hr>
             </div>
 
