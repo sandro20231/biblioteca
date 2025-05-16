@@ -35,3 +35,41 @@ def erro(request):
 
 def inicio(request):
     return render(request, "inicio/inicio.html")
+
+
+def novoautor(request):
+    if request.method == "POST":
+        nome = request.POST['nanome']
+        idade = request.POST['naidade']
+
+        registro = Autor(nome=nome, idade=idade)
+        registro.save()
+        return HttpResponseRedirect(reverse('listaautor'))
+
+    return render(request, 'inicio/novoautor.html')
+
+
+def listaautor(request):
+    registros = Autor.objects.all()
+    return render(request, 'inicio/listaautor.html', {"registros": registros})
+
+
+def exibirautor(request, id):
+    registro = Autor.objects.get(pk=id)
+    return render(request, 'inicio/exibirautor.html', {"registro": registro})
+
+
+def buscarautoradeletar(request):
+    if request.method == "POST":
+        id = request.POST['idexcluir']
+        registro = Autor.objects.get(pk=id)
+        return render(request, 'inicio/deletarautor.html', {"registro": registro})
+    return render(request, 'inicio/deletarautor.html')
+
+
+def excluirautor(request):
+    if request.method == "POST":
+        id = request.POST['idex']
+        registro = Autor.objects.get(pk=id)
+        registro.delete()
+        return HttpResponseRedirect(reverse('listaautor'))

@@ -1,0 +1,23 @@
+{% extends 'inicio/layout.html' %}
+
+{% block body %}
+<h2>Lista de autores:</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Id:</th>
+            <th>Nome:</th>
+            <th>Idade:</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for r in registros %}
+        <tr>
+            <td><a href="listaautor/{{r.id}}">{{r.id}}</a></td>
+            <td>{{r.nome}}</td>
+            <td>{{r.idade}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

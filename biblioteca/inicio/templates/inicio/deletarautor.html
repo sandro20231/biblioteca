@@ -1,0 +1,25 @@
+{% extends 'inicio/layout.html' %}
+
+{% block body %}
+
+<div>
+    <h2>qual registro você quer verificar?</h2>
+    <form action="{% url 'buscarautoradeletar' %}" method="post">
+        {% csrf_token %}
+        <input type="number" name="idexcluir">
+        <button type="submit">Verificiar</button>
+    </form>
+</div>
+<div>
+    <p>Nome:{{registro.nome}}</p>
+    <p>Idade:{{registro.idade}}</p>
+</div>
+<div>
+    <h2>Para confirmar digite o id do autor e clique em excluir:</h2>
+    <form action="{% url 'excluirautor' %}" method="post">
+        {% csrf_token %}
+        <input type="number" name="idex">
+        <button type="submit">Excluir</button>
+    </form>
+</div>
+{% endblock %}

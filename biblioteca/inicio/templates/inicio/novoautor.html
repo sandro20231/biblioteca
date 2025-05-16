@@ -1,0 +1,17 @@
+{% extends 'inicio/layout.html' %}
+
+{% block body %}
+<div class='novoautorpai'>
+    <div class='novoautorfilho'>
+        <h2>Novo autor</h2>
+        <form action="{% url 'novoautor' %}" method="post">
+            {% csrf_token %}
+            <label>Nome:</label><br>
+            <input type="text" name="nanome"><br>
+            <input type="number" name="naidade"><br>
+            <button class="botao4" type="submit">Enviar</button>
+
+        </form>
+    </div>
+</div>
+{% endblock %}
