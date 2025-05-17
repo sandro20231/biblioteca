@@ -38,15 +38,15 @@
                 <hr>
                 <h2>Opções</h2>
 
-                <a href="#">Listar livros</a><br>
-                <a href="#">Novo livro</a><br>
-                <a href="#">excluir livro</a><br>
+                <a href="{% url 'todoslivros' %}">Listar livros</a><br>
+                <a href="{% url 'novolivro' %}">Novo livro</a><br>
+                <a href="{% url 'buscadeletar' %}">excluir livro</a><br>
                 <a href="#">Alterar Livro</a><br>
 
                 <a href="{% url 'listaautor' %}">Listar autores</a><br>
                 <a href="{% url 'novoautor' %}">Novo autor</a><br>
                 <a href="{% url 'buscarautoradeletar' %}">Excluir autor</a><br>
-                <a href="#">alterar autor</a><br>
+                <a href="{% url 'busc' %}">alterar autor</a><br>
                 <hr>
                 <a href="{%url 'login' %}">Login</a><br>
                 <a href="{% url 'logout' %}" method="post">Logout</a>

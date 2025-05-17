@@ -3,6 +3,9 @@ from .models import Autor, Livro, Usuario
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from rest_framework import viewsets
+from .models import Autor, Livro
+from .serializers import AutorSerializer, LivroSerializer
 # Create your views here.
 
 
@@ -73,3 +76,69 @@ def excluirautor(request):
         registro = Autor.objects.get(pk=id)
         registro.delete()
         return HttpResponseRedirect(reverse('listaautor'))
+
+
+def busc(request):
+    if request.method == "POST":
+        id = request.POST['idalterar']
+        registro = Autor.objects.get(pk=id)
+        return render(request, 'inicio/alterarautor.html', {"registro": registro})
+    return render(request, 'inicio/alterarautor.html')
+
+
+def alterarautor(request):
+    if request.method == "POST":
+        id = request.POST['id2alterar']
+        nome = request.POST['novonome']
+        idade = request.POST['novaidade']
+
+        registro = Autor.objects.get(pk=id)
+        registro.nome = nome
+        registro.idade = idade
+        registro.save()
+        return HttpResponseRedirect(reverse('listaautor'))
+
+
+def novolivro(request):
+    if request.method == "POST":
+        titulo = request.POST['titulolivro']
+        autor = request.POST['autorlivro']
+        registroautor = Autor.objects.filter(nome=autor).first()
+        resumo = request.POST['resumolivro']
+
+        registrolivro = Livro(
+            título=titulo, autor=registroautor, resumo=resumo)
+        registrolivro.save()
+        return HttpResponseRedirect(reverse('todoslivros'))
+    return render(request, 'inicio/novolivro.html')
+
+
+def todoslivros(request):
+    registros = Livro.objects.all()
+    return render(request, 'inicio/todoslivros.html', {"registros": registros})
+
+
+def buscadeletar(request):
+    if request.method == "POST":
+        id = request.POST['idexcluir3']
+        registro = Livro.objects.get(pk=id)
+        return render(request, 'inicio/excluirlivro.html', {"registro": registro})
+    return render(request, 'inicio/excluirlivro.html')
+
+
+def deletarlivro(request):
+    if request.method == "POST":
+        id = request.POST['idexcluir4']
+        registro = Livro.objects.get(pk=id)
+        registro.delete()
+        return HttpResponseRedirect(reverse('todoslivros'))
+
+
+class AutorViewSet(viewsets.ModelViewSet):
+    queryset = Autor.objects.all()
+    serializer_class = AutorSerializer
+
+
+class LivroViewSet(viewsets.ModelViewSet):
+    queryset = Livro.objects.all()
+    serializer_class = LivroSerializer
