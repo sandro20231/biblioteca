@@ -22,5 +22,7 @@ urlpatterns = [
     path('todoslivros', views.todoslivros, name="todoslivros"),
     path('buscadeletar', views.buscadeletar, name="buscadeletar"),
     path('deletarlivro', views.deletarlivro, name='deletarlivro'),
+    path('api2/listarlivros', views.listarlivrosapi, name="listarlivrosapi"),
+    path('api2/listarautores', views.listarautoresapi, name="listarautoresapi")
    
 ]

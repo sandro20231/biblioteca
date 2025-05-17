@@ -142,3 +142,11 @@ class AutorViewSet(viewsets.ModelViewSet):
 class LivroViewSet(viewsets.ModelViewSet):
     queryset = Livro.objects.all()
     serializer_class = LivroSerializer
+
+
+def listarlivrosapi(request):
+    return render(request, 'inicio/ca_listandolivros.html')
+
+
+def listarautoresapi(request):
+    return render(request, 'inicio/ca_listandoautores.html')
