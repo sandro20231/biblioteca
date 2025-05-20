@@ -51,8 +51,10 @@
                 <a href="{%url 'login' %}">Login</a><br>
                 <a href="{% url 'logout' %}" method="post">Logout</a>
                 <hr>
-                <a href="{% url 'listarlivrosapi' %}">api listar livros</a>
-                <a href="{% url 'listarautoresapi' %}">api listar autores</a>
+                <a href="{% url 'listarlivrosapi' %}">api listar livros</a><br>
+                <a href="{% url 'listarautoresapi' %}">api listar autores</a><br>
+                <a href="{% url 'salvarautor' %}">api salvar autor</a><br>
+                <a href="{% url 'salvarlivro' %}">api salvar livro</a>
             </div>
 
             <div class="neto2">

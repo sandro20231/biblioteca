@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="d"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        function Salvarlivro() {
+            const [titulo, setTitulo] = useState('');
+            const [autor, setAutor] = useState('');
+            const [resumo, setResumo] = useState('');
+            const [mensagem, setMensagem] = useState('');
+
+            function salvar3(e) {
+                e.preventDefault();
+
+                const dados = {
+                    título: titulo,
+                    autor: autor,
+                    resumo: resumo
+                }
+
+                axios.post("http://127.0.0.1:8000/api/livros/", dados, {
+                    headers: {
+                        'X-CSRFToken': csrftoken
+                    }
+                })
+            }
+
+            return (
+                <div>
+                    <h2>salvar novo livro</h2>
+                    <form onSubmit={salvar3}>
+                        <label>título:</label><br />
+                        <input
+                            type="text"
+                            placeholder="digite o título aqui"
+                            value={titulo}
+                            onChange={(e) => setTitulo(e.target.value)} /><br />
+                        <label>autor</label><br />
+                        <input
+                            type="text"
+                            placeholder="digite o autor"
+                            value={autor}
+                            onChange={(e) => setAutor(e.target.value)} /><br />
+                        <label>Resumo</label><br />
+                        <input
+                            type="text"
+                            placeholder="digite o resumo"
+                            value={resumo}
+                            onChange={(e) => setResumo(e.target.value)} /><br />
+                        <button type="submit">Enviar</button><br />
+                        {mensagem}
+
+                    </form>
+
+                </div>
+            )
+        }
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+        ReactDOM.render(<Salvarlivro />, document.querySelector('#d'));
+    </script>
+</body>
+
+</html>

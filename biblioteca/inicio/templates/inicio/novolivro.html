@@ -1,0 +1,16 @@
+{% extends 'inicio/layout.html' %}
+
+{% block body %}
+<h2>Inserir novo livro</h2>
+<form action="{% url 'novolivro' %}" method="post">
+    {% csrf_token %}
+    <label>titulo</label><br>
+    <input type="text" name="titulolivro"><br>
+    <label>Autor</label><br>
+    <input type="text" name="autorlivro"><br>
+    <label>Resumo:</label><br>
+    <input type="text" name="resumolivro"><br>
+    <button type="submit">Enviar</button>
+
+</form>
+{% endblock %}

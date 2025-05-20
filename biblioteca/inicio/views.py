@@ -6,6 +6,7 @@ from django.urls import reverse
 from rest_framework import viewsets
 from .models import Autor, Livro
 from .serializers import AutorSerializer, LivroSerializer
+
 # Create your views here.
 
 
@@ -150,3 +151,11 @@ def listarlivrosapi(request):
 
 def listarautoresapi(request):
     return render(request, 'inicio/ca_listandoautores.html')
+
+
+def salvarautor(request):
+    return render(request, 'inicio/ca_salvarautor.html')
+
+
+def salvarlivro(request):
+    return render(request, 'inicio/csa_salvarlivro.html')

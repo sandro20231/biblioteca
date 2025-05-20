@@ -1,0 +1,30 @@
+{% extends 'inicio/layout.html' %}
+
+{% block body %}
+<div class="busc">
+    <h2>qual o id deseja alterar?</h2>
+    <form action="{% url 'busc' %}" method="post">
+        {% csrf_token %}
+        <input type="number" name="idalterar">
+        <button type="submit">Buscar</button>
+    </form>
+</div>
+<div>
+    <p>id:{{registro.id}}</p>
+    <p>nome:{{registro.nome}}</p>
+    <p>idade:{{registro.idade}}</p>
+</div>
+<div class="itensalterar">
+    <form action="{% url 'alterarautor' %}" method="post">
+        {% csrf_token %}
+        <label>Id:</label><br>
+        <input type="number" name="id2alterar"><br>
+        <label>novo nome:</label><br>
+        <input type="text" name="novonome"><br>
+        <label>nova idade</label><br>
+        <input type="number" name="novaidade"><br>
+        <button type="submit">alterar</button>
+    </form>
+
+</div>
+{% endblock %}

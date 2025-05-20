@@ -4,7 +4,6 @@ from rest_framework.routers import DefaultRouter
 from .views import AutorViewSet, LivroViewSet
 
 
-
 urlpatterns = [
     path("", views.inicio, name="inicio"),
     path("login", views.login_a, name="login"),
@@ -23,6 +22,8 @@ urlpatterns = [
     path('buscadeletar', views.buscadeletar, name="buscadeletar"),
     path('deletarlivro', views.deletarlivro, name='deletarlivro'),
     path('api2/listarlivros', views.listarlivrosapi, name="listarlivrosapi"),
-    path('api2/listarautores', views.listarautoresapi, name="listarautoresapi")
-   
+    path('api2/listarautores', views.listarautoresapi, name="listarautoresapi"),
+    path('salvarautores', views.salvarautor, name="salvarautor"),
+    path('salvarlivro', views.salvarlivro, name="salvarlivro")
+
 ]

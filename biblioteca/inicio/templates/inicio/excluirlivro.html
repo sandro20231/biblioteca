@@ -1,0 +1,25 @@
+{% extends 'inicio/layout.html' %}
+
+{% block body %}
+<h2>Deletar livro</h2>
+<form action="{% url 'buscadeletar' %}" method="post">
+    {% csrf_token %}
+    <label>digite o id</label><br>
+    <input type="number" name="idexcluir3"><br>
+    <button type="submit">Buscar</button>
+</form>
+<div class="buscaexcluirlivro">
+
+    <p>id:{{registro.id}}</p>
+    <p>titulo:{{registro.título}}</p>
+    <p>autor:{{registro.autor}}</p>
+    <p>Resumo:{{registro.resumo}}</p>
+
+</div>
+<form action="{% url 'deletarlivro' %}" method="post">
+    {% csrf_token %}
+    <label>digite o id</label><br>
+    <input type="number" name="idexcluir4"><br>
+    <button type="submit">Excluir livro</button>
+</form>
+{% endblock %}

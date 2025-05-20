@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listando livros api</title>
+</head>
+
+<body>
+    <div id="a"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function Listarlivros() {
+            const [livros, setLivros] = useState([]);
+
+            useEffect(() => {
+                axios.get("http://127.0.0.1:8000/api/livros/")
+                    .then(response => setLivros(response.data))
+            }, []);
+
+            return (
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>id</td>
+                                <td>titulo</td>
+                                <td>Autor</td>
+                                <td>resumo</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {livros.map(l => (
+                                <tr>
+                                    <td>{l.id}</td>
+                                    <td>{l.título}</td>
+                                    <td>{l.autor.nome}</td>
+                                    <td>{l.resumo}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )
+        }
+        ReactDOM.render(<Listarlivros />, document.querySelector('#a'));
+    </script>
+</body>
+
+</html>

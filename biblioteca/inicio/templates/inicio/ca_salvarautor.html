@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="c"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        function Salvarautor() {
+            const [nome, setNome] = useState('');
+            const [idade, setIdade] = useState('');
+            const [mensagem, setMensagem] = useState('');
+
+            function salvar2(e) {
+                e.preventDefault();
+
+                const dados = {
+                    nome: nome,
+                    idade: idade
+                };
+
+                axios.post("http://127.0.0.1:8000/api/autores/", dados, {
+                    headers: {
+                        'X-CSRFToken': csrftoken
+                    }
+                })
+                    .then(response => setMensagem("Envio concluído com sucesso"))
+                    .catch(error => setMensagem("Erro ao enviar"));
+
+            }
+            return (
+                <div>
+                    <h2>Salvando novo autor</h2>
+
+                    <label>Nome:</label><br />
+                    <input
+                        type="text"
+                        placeholder="digite seu nome aqui"
+                        value={nome}
+                        onChange={(e) => setNome(e.target.value)} /><br />
+                    <label>Idade:</label><br />
+                    <input
+                        type="number"
+                        value={idade}
+                        onChange={(e) => setIdade(e.target.value)} /><br />
+                    <button onClick={salvar2}>enviar</button>
+                    {mensagem}
+
+                </div>
+            )
+
+
+        }
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+
+
+        ReactDOM.render(<Salvarautor />, document.querySelector('#c'));
+    </script>
+</body>
+
+</html>
